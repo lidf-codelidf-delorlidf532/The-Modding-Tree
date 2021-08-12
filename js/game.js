@@ -62,7 +62,7 @@ function getNextAt(layer, canMax=false, useType = null) {
 	}
 }
 
-function softcap(value, cap, power = 0.5) {
+function softcap(value, cap, power = 0.005) {
 	if (value.lte(cap)) return value
 	return value.pow(power).times(cap.pow(decimalOne.sub(power)))
 }
@@ -158,7 +158,7 @@ function resetBuyables(layer){
 
 
 function addPoints(layer, gain) {
-	player[layer].points = player[layer].points.add(gain).max(0)
+	player[layer].points = player[layer].points.add(gain).max(10)
 	if (player[layer].best) player[layer].best = player[layer].best.max(player[layer].points)
 	if (player[layer].total) player[layer].total = player[layer].total.add(gain)
 }
